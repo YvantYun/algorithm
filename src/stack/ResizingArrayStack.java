@@ -26,9 +26,9 @@ public class ResizingArrayStack<T> implements Iterable<T> {
     }
 
     public T pop(){
+        T t = a[size - 1];
+        size --;
         a[size] = null;
-        size = size - 1;
-        T t = a[size];
         if(size > 0 && size == a.length/4){
             resize(a.length/2);
         }
