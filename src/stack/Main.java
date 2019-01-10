@@ -15,12 +15,19 @@ public class Main {
             }else if(param[i].equals(")")){
                 StringBuilder res = new StringBuilder();
                 //因为是压栈，压进去的是相反的
-                res.append(")").append(dataStack.pop()).append(oprStack.pop()).append(oprStack.pop());
+                res.append(")").append(dataStack.pop()).append(oprStack.pop()).append(dataStack.pop()).append("(");
                 dataStack.push(res.toString());
             }else {
                 dataStack.push(param[i]);
             }
         }
+        String res = dataStack.pop();
+        System.out.println(res);
+        StringBuilder temp = new StringBuilder();
+        for(int i = res.length() -1; i >=0; i --){
+            temp.append(res.charAt(i));
+        }
+        System.out.println(temp.toString());
 
 
     }
