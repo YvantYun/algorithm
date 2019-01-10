@@ -6,11 +6,10 @@ public class Node<T> {
 
     public Node() {
         this.t = null;
+        this.next = null;
     }
 
-    public Node nextNode (Node node){
-        return node.next;
-    }
+
 
     @Override
     public String toString() {

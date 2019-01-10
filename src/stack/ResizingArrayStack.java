@@ -35,6 +35,7 @@ public class ResizingArrayStack<T> implements Iterable<T> {
         return t;
     }
 
+
     @Override
     public Iterator<T> iterator() {
         return new ReverseArrayIterator();

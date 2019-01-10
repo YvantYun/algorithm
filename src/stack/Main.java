@@ -1,32 +1,27 @@
 package stack;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 public class Main {
     public static void main(String[] args) {
-//        ResizingArrayStack<Integer> integers = new ResizingArrayStack<>();
-//        for(int i = 0 ; i < 10 ; i++ ){
-//            integers.push(i);
-//        }
-//       integers.pop();
-//       while (integers.iterator().hasNext()){
-//           int a = integers.iterator().next();
-//           System.out.print(a);
-//       }
-        Calendar now = Calendar.getInstance();
-        String time = now.get(Calendar.YEAR) + "-" + (now.get(Calendar.MONTH) + 1) + "-" + now.get(Calendar.DAY_OF_MONTH) + " 00:00:00";
-        System.out.println(time);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            Date a = formatter.parse("2019-1-9 00:00:00");
-        } catch (ParseException e) {
-            e.printStackTrace();
+        //双栈法
+        //数值栈，压入数值
+        LinkedListStack<String> dataStack = new LinkedListStack<>();
+        //操作符栈，压入 +-*/
+        LinkedListStack<String> oprStack  = new LinkedListStack<>();
+        String str ="1+2)*3-4)*5-6)))";
+        String[] param = str.split("");
+        for(int i = 0 ; i < str.length();i ++){
+            if(param[i].equals("+") || param[i].equals("-") || param[i].equals("*") || param[i].equals("/")){
+                oprStack.push(param[i]);
+            }else if(param[i].equals(")")){
+                StringBuilder res = new StringBuilder();
+                //因为是压栈，压进去的是相反的
+                res.append(")").append(dataStack.pop()).append(oprStack.pop()).append(oprStack.pop());
+                dataStack.push(res.toString());
+            }else {
+                dataStack.push(param[i]);
+            }
         }
-        now.add(Calendar.DATE, -2);
-        int i = now.get(Calendar.DATE);
-        System.out.println(i);
+
+
     }
 }
